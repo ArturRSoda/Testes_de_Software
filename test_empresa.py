@@ -11,6 +11,6 @@ class ClassTesteEmpresa(unittest.TestCase):
         empresa = Empresa("Elton-Lmtd")
         funcionario = Funcionario("Felipe")
         empresa.inserir_funcionario(funcionario)
-        self.asserEqual(empresa.funcionario[0].nome, "Felipe")
+        self.assertEqual(empresa.funcionarios[0].nome, "Felipe")
 
 
