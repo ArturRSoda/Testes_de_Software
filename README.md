@@ -11,3 +11,4 @@
     - Criacao projeto
 
 - Inclusao de funcionario em projeto
+    - Verificar projeto em funcionario

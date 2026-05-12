@@ -31,3 +31,12 @@ class ClassTesteEmpresa(unittest.TestCase):
         self.assertEqual(projeto.funcionarios[0].nome, "Felipe")
 
 
+    def test_verificarProjetoEmFuncionario(self):
+        empresa = Empresa("Elton-Lmtd")
+        funcionario = Funcionario("Felipe")
+        projeto = Projeto("SAVI")
+        empresa.inserir_funcionario(funcionario)
+        empresa.inserir_projeto(projeto)
+
+        empresa.inserir_funcionario_em_projeto(funcionario, projeto)
+        self.assertEqual(funcionario.projetos[0].nome, projeto.nome)
