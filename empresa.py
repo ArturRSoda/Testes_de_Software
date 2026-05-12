@@ -18,9 +18,10 @@ class Empresa:
         
         for p in self.projetos:
             if (p == projeto):
-                p.inserir_funcionario(tmp_f)
-                return True
+                tmp_p = p
+                break;
 
-        return False
 
+        tmp_p.inserir_funcionario(tmp_f)
+        tmp_f.inserir_projeto(tmp_p)
 
