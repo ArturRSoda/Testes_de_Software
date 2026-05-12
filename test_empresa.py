@@ -1,6 +1,7 @@
 import unittest
 from empresa import Empresa
 from funcionario import Funcionario
+from projeto import Projeto
 
 class ClassTesteEmpresa(unittest.TestCase):
     def test_criaEmpresa(self):
