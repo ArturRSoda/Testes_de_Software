@@ -12,3 +12,6 @@
 
 - Inclusao de funcionario em projeto
     - Verificar projeto em funcionario
+
+- Testes de Caminhos infelizes
+    - Criacao de entidades com nome vazio

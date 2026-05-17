@@ -2,11 +2,16 @@ import unittest
 from empresa import Empresa
 from funcionario import Funcionario
 from projeto import Projeto
+from excecoes import ErroNomeVazio
 
 class ClassTesteEmpresa(unittest.TestCase):
     def test_criaEmpresa(self):
         empresa = Empresa("Elton-Lmtd")
         self.assertEqual(empresa.nome, "Elton-Lmtd")
+
+    def test_criaEmpresaNomeVazio(self):
+        with self.assertRaises(ErroNomeVazio):
+            empresa = Empresa("")
 
     def test_incluirFuncionario(self):
         empresa = Empresa("Elton-Lmtd")
