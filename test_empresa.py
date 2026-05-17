@@ -20,4 +20,14 @@ class ClassTesteEmpresa(unittest.TestCase):
         empresa.inserir_projeto(projeto)
         self.assertEqual(empresa.projetos[0].nome, "SAVI")
 
+    def test_incluirFuncionarioEmProjeto(self):
+        empresa = Empresa("Elton-Lmtd")
+        funcionario = Funcionario("Felipe")
+        projeto = Projeto("SAVI")
+        empresa.inserir_funcionario(funcionario)
+        empresa.inserir_projeto(projeto)
+
+        empresa.inserir_funcionario_em_projeto(funcionario, projeto)
+        self.assertEqual(projeto.funcionarios[0].nome, "Felipe")
+
 

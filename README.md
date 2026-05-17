@@ -9,3 +9,5 @@
 
 - Inclusao projeto
     - Criacao projeto
+
+- Inclusao de funcionario em projeto
