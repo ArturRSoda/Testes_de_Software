@@ -2,7 +2,7 @@ import unittest
 from empresa import Empresa
 from funcionario import Funcionario
 from projeto import Projeto
-from excecoes import ErroNomeVazio
+from excecoes import ErroNomeVazio, ErroEntidadeJaExistente
 
 class ClassTesteEmpresa(unittest.TestCase):
     def test_criaEmpresa(self):
@@ -45,3 +45,32 @@ class ClassTesteEmpresa(unittest.TestCase):
 
         empresa.inserir_funcionario_em_projeto(funcionario, projeto)
         self.assertEqual(funcionario.projetos[0].nome, projeto.nome)
+
+    def test_inserir_funcionario_ja_existente(self):
+        empresa = Empresa("Elton-Lmtd")
+        funcionario1 = Funcionario("Felipe")
+        funcionario2 = Funcionario("Felipe")
+
+        empresa.inserir_funcionario(funcionario1)
+        with self.assertRaises(ErroEntidadeJaExistente):
+            empresa.inserir_funcionario(funcionario2)
+
+    def test_inserir_projeto_ja_existente(self):
+        empresa = Empresa("Elton-Lmtd")
+        projeto1 = Projeto("SAVI")
+        projeto2 = Projeto("SAVI")
+
+        empresa.inserir_projeto(projeto1)
+        with self.assertRaises(ErroEntidadeJaExistente):
+            empresa.inserir_projeto(projeto2)
+
+    def test_inserirFuncionarioEmProjetoJaInserido(self):
+        empresa = Empresa("Elton-Lmtd")
+        funcionario = Funcionario("Felipe")
+        projeto = Projeto("SAVI")
+        empresa.inserir_funcionario(funcionario)
+        empresa.inserir_projeto(projeto)
+
+        empresa.inserir_funcionario_em_projeto(funcionario, projeto)
+        with self.assertRaises(ErroEntidadeJaExistente):
+            empresa.inserir_funcionario_em_projeto(funcionario, projeto)

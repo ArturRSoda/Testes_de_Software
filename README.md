@@ -15,3 +15,4 @@
 
 - Testes de Caminhos infelizes
     - Criacao de entidades com nome vazio
+    - Inserir entidades ja existentes
