@@ -1,5 +1,10 @@
+from excecoes import ErroNomeVazio
+
 class Empresa:
     def __init__(self, nome):
+        if (nome == ""):
+            raise ErroNomeVazio("Nome de entidades nao pode ser vazio.")
+
         self.nome = nome
         self.funcionarios = list()
         self.projetos = []
