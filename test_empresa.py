@@ -2,6 +2,7 @@ import unittest
 from empresa import Empresa
 from funcionario import Funcionario
 from projeto import Projeto
+from ocorrencia import Ocorrencia
 from excecoes import ErroNomeVazio, ErroEntidadeJaExistente
 
 class ClassTesteEmpresa(unittest.TestCase):
@@ -74,3 +75,34 @@ class ClassTesteEmpresa(unittest.TestCase):
         empresa.inserir_funcionario_em_projeto(funcionario, projeto)
         with self.assertRaises(ErroEntidadeJaExistente):
             empresa.inserir_funcionario_em_projeto(funcionario, projeto)
+
+    def test_InserirOcorrencia(self):
+        empresa = Empresa("Elton-Lmtd")
+        funcionario = Funcionario("Felipe")
+        projeto = Projeto("SAVI")
+        ocorrencia = Ocorrencia("BugCodigo1", "Erro ao executar codigo 1")
+
+        empresa.inserir_funcionario(funcionario)
+        empresa.inserir_projeto(projeto)
+        empresa.inserir_funcionario_em_projeto(funcionario, projeto)
+
+        empresa.inserir_ocorrencia_em_projeto(ocorrencia, projeto, funcionario)
+
+        self.assertEqual(projeto.ocorrencias[0].nome, "BugCodigo1")
+        self.assertEqual(funcionario.ocorrencias[0].nome , "BugCodigo1")
+
+    def test_InserirOcorrenciaEmProjetoSemFuncionarioRelacionado(self):
+        empresa = Empresa("Elton-Lmtd")
+        funcionario = Funcionario("Felipe")
+        projeto = Projeto("SAVI")
+        ocorrencia = Ocorrencia("BugCodigo1", "Erro ao executar codigo 1")
+
+        empresa.inserir_funcionario(funcionario)
+        empresa.inserir_projeto(projeto)
+        # empresa.inserir_funcionario_em_projeto(funcionario, projeto)
+
+        empresa.inserir_ocorrencia_em_projeto(ocorrencia, projeto, funcionario)
+
+        self.assertEqual(len(projeto.ocorrencias), 0)
+        self.assertEqual(len(funcionario.ocorrencias), 0)
+
