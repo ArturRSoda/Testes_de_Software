@@ -1,6 +1,7 @@
 import unittest
 from projeto import Projeto
 from funcionario import Funcionario
+from ocorrencia import Ocorrencia
 from excecoes import ErroNomeVazio, ErroEntidadeJaExistente
 
 class ClassTesteProjeto(unittest.TestCase):
@@ -20,3 +21,12 @@ class ClassTesteProjeto(unittest.TestCase):
         projeto.inserir_funcionario(funcionario1)
         with self.assertRaises(ErroEntidadeJaExistente):
             projeto.inserir_funcionario(funcionario2)
+
+    def test_inserir_ocorrencia_ja_existente(self):
+        projeto = Projeto("SAVI")
+
+        ocorrencia = Ocorrencia("BugCodigo1", "Erro ao executar codigo 1")
+
+        projeto.inserir_ocorrencia(ocorrencia)
+        with self.assertRaises(ErroEntidadeJaExistente):
+            projeto.inserir_ocorrencia(ocorrencia)

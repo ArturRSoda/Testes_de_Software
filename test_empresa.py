@@ -106,3 +106,18 @@ class ClassTesteEmpresa(unittest.TestCase):
         self.assertEqual(len(projeto.ocorrencias), 0)
         self.assertEqual(len(funcionario.ocorrencias), 0)
 
+    def test_InserirOcorrenciaJaExistente(self):
+        empresa = Empresa("Elton-Lmtd")
+        funcionario = Funcionario("Felipe")
+        projeto = Projeto("SAVI")
+        ocorrencia = Ocorrencia("BugCodigo1", "Erro ao executar codigo 1")
+
+        empresa.inserir_funcionario(funcionario)
+        empresa.inserir_projeto(projeto)
+        empresa.inserir_funcionario_em_projeto(funcionario, projeto)
+
+        empresa.inserir_ocorrencia_em_projeto(ocorrencia, projeto, funcionario)
+
+        with self.assertRaises(ErroEntidadeJaExistente):
+            empresa.inserir_ocorrencia_em_projeto(ocorrencia, projeto, funcionario)
+
