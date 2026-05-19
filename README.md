@@ -19,6 +19,7 @@
 - Inclusao de ocorrencia em projeto
     - Verificar ocorrencia em projeto
     - Verificar ocorrencia em funcionario
+    - Verificar estado ocorrencia
 
 - Testes de Caminhos infelizes
     - Criacao de entidades com nome vazio
