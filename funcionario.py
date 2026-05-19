@@ -7,9 +7,13 @@ class Funcionario:
 
         self.nome = nome
         self.projetos = list()
+        self.ocorrencias = list()
 
     def inserir_projeto(self, projeto):
         for p in self.projetos:
             if (p.nome == projeto.nome):
                 raise ErroEntidadeJaExistente("Projeto ja existente.")
         self.projetos.append(projeto)
+
+    def inserir_ocorrencia(self, ocorrencia):
+        self.ocorrencias.append(ocorrencia)

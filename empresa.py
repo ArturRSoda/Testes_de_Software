@@ -36,3 +36,22 @@ class Empresa:
         tmp_p.inserir_funcionario(tmp_f)
         tmp_f.inserir_projeto(tmp_p)
 
+
+
+    def inserir_ocorrencia_em_projeto(self, ocorrencia, projeto, funcionario):
+        for f in self.funcionarios:
+            if (f == funcionario):
+                tmp_f = f
+                break
+        
+        for p in self.projetos:
+            if (p == projeto):
+                tmp_p = p
+                break;
+
+
+        if (tmp_p not in tmp_f.projetos):
+            return
+
+        tmp_p.inserir_ocorrencia(ocorrencia)
+        tmp_f.inserir_ocorrencia(ocorrencia)
