@@ -1,4 +1,4 @@
-from excecoes import ErroEntidadeJaExistente, ErroNomeVazio
+from excecoes import ErroEntidadeJaExistente, ErroNomeVazio, ErroOcorrenciaFechada
 
 class Empresa:
     def __init__(self, nome):
@@ -55,3 +55,17 @@ class Empresa:
 
         tmp_p.inserir_ocorrencia(ocorrencia)
         tmp_f.inserir_ocorrencia(ocorrencia)
+
+    def mudar_responsavel(self, funcionario_velho, funcionario_novo, ocorrencia):
+        for f in self.funcionarios:
+            if (f == funcionario_velho):
+                tmp_f = f
+                break
+
+        if (ocorrencia.estado == "fechado"):
+            raise ErroOcorrenciaFechada("Ocorrencia ja fechada")
+
+        tmp_f.ocorrencias.remove(ocorrencia)
+        funcionario_novo.inserir_ocorrencia(ocorrencia)
+
+
