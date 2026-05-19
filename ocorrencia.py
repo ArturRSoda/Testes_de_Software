@@ -1,3 +1,5 @@
+from excecoes import ErroOcorrenciaFechada
+
 class Ocorrencia:
     def __init__(self, nome, resumo):
         self.nome = nome
@@ -15,5 +17,8 @@ class Ocorrencia:
     def definir_prioridade(self, prioridade):
         if prioridade not in ("baixa", "media", "alta", "NA"):
             raise ValueError("Prioridade de ocorrencia invalido")
+
+        if (self.estado == "fechado"):
+            raise ErroOcorrenciaFechada("Ocorrencia ja fechada")
 
         self.prioridade = prioridade 
