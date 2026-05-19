@@ -9,3 +9,7 @@ class ErroEntidadeJaExistente(Exception):
 class ErroOcorrenciaFechada(Exception):
     """Erro de ocorrencia ja foi fechada"""
     pass
+
+class ErroMuitasOcorrencias(Exception):
+    """Erro de muitas ocorrencias"""
+    pass

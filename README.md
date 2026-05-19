@@ -22,6 +22,7 @@
     - Verificar estado ocorrencia
     - trocar funcionario responsavel
     - tipos e prioridade de ocorrencia
+    - funcionario responsavel nao mais que 10 ocorrencias abertas
 
 - Testes de Caminhos infelizes
     - Criacao de entidades com nome vazio

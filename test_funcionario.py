@@ -3,7 +3,7 @@ from funcionario import Funcionario
 from excecoes import ErroNomeVazio
 from projeto import Projeto
 from ocorrencia import Ocorrencia
-from excecoes import ErroEntidadeJaExistente
+from excecoes import ErroEntidadeJaExistente, ErroMuitasOcorrencias
 
 class ClassTesteFuncionario(unittest.TestCase):
     def test_criaFuncionario(self):
@@ -31,3 +31,21 @@ class ClassTesteFuncionario(unittest.TestCase):
         funcionario.inserir_ocorrencia(ocorrencia)
         with self.assertRaises(ErroEntidadeJaExistente):
             funcionario.inserir_ocorrencia(ocorrencia)
+
+    def test_inserir_mais_de_10_ocorrencia_abertas(self):
+
+
+        funcionario = Funcionario("Felipe")
+        for i in range(10):
+            ocorrencia = Ocorrencia(f"BugCodigo{i}", f"Erro ao executar codigo {i}")
+            funcionario.inserir_ocorrencia(ocorrencia)
+
+
+        ocorrencia = Ocorrencia(f"BugCodigo11", f"Erro ao executar codigo 11")
+        with self.assertRaises(ErroMuitasOcorrencias):
+            funcionario.inserir_ocorrencia(ocorrencia)
+
+        funcionario.fechar_ocorrencia(funcionario.ocorrencias[0])
+        funcionario.inserir_ocorrencia(ocorrencia)
+
+        self.assertEqual(funcionario.ocorrencias[-1].nome, "BugCodigo11")
