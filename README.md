@@ -10,6 +10,9 @@
 - Inclusao projeto
     - Criacao projeto
 
+- Inclusao Ocorrencia
+    - Criacao Ocorrencia
+
 - Inclusao de funcionario em projeto
     - Verificar projeto em funcionario
 
