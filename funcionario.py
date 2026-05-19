@@ -20,3 +20,8 @@ class Funcionario:
             if (o.nome == ocorrencia.nome):
                 raise ErroEntidadeJaExistente("Ocorrencia ja existente.")
         self.ocorrencias.append(ocorrencia)
+
+    def fechar_ocorrencia(self, ocorrencia):
+        for o in self.ocorrencias:
+            if (o.nome == ocorrencia.nome):
+                o.estado = "fechado"
