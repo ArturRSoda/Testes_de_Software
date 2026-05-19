@@ -3,7 +3,7 @@ from empresa import Empresa
 from funcionario import Funcionario
 from projeto import Projeto
 from ocorrencia import Ocorrencia
-from excecoes import ErroNomeVazio, ErroEntidadeJaExistente
+from excecoes import ErroNomeVazio, ErroEntidadeJaExistente, ErroOcorrenciaFechada
 
 class ClassTesteEmpresa(unittest.TestCase):
     def test_criaEmpresa(self):
@@ -133,10 +133,38 @@ class ClassTesteEmpresa(unittest.TestCase):
 
         empresa.inserir_ocorrencia_em_projeto(ocorrencia, projeto, funcionario)
 
-        self.assertEqual(ocorrencia.estado, "aberto")
-
+        e1 = ocorrencia.estado
         funcionario.fechar_ocorrencia(ocorrencia)
+        e2 = ocorrencia.estado
 
-        self.assertEqual(ocorrencia.estado, "fechado")
+        self.assertEqual(e1, "aberto")
+        self.assertEqual(e2, "fechado")
 
 
+    def test_mudarResponsavel(self):
+        empresa = Empresa("Elton-Lmtd")
+        funcionario = Funcionario("Felipe")
+        funcionario_novo = Funcionario("Geovani")
+        projeto = Projeto("SAVI")
+        ocorrencia = Ocorrencia("BugCodigo1", "Erro ao executar codigo 1")
+
+        empresa.inserir_funcionario(funcionario)
+        empresa.inserir_funcionario(funcionario_novo)
+        empresa.inserir_projeto(projeto)
+        empresa.inserir_funcionario_em_projeto(funcionario, projeto)
+        empresa.inserir_funcionario_em_projeto(funcionario_novo, projeto)
+
+        empresa.inserir_ocorrencia_em_projeto(ocorrencia, projeto, funcionario)
+
+
+        empresa.mudar_responsavel(funcionario, funcionario_novo, ocorrencia)
+
+        f1 = funcionario_novo.ocorrencias[0].nome
+        f2 = (ocorrencia not in funcionario.ocorrencias)
+
+        funcionario_novo.fechar_ocorrencia(ocorrencia)
+
+        self.assertEqual(f1, "BugCodigo1")
+        self.assertTrue(f2)
+        with self.assertRaises(ErroOcorrenciaFechada):
+            empresa.mudar_responsavel(funcionario_novo, funcionario, ocorrencia)
