@@ -25,12 +25,9 @@ class ClassTesteFuncionario(unittest.TestCase):
 
     def test_inserir_ocorrencia_ja_existente(self):
         funcionario = Funcionario("Felipe")
-        projeto1 = Projeto("SAVI")
-        projeto2 = Projeto("SAVI")
 
-        Ocorrencia1 = Ocorrencia("BugCodigo1", "Erro ao executar codigo 1")
-        Ocorrencia2 = Ocorrencia("BugCodigo1", "Erro ao executar codigo 1")
+        ocorrencia = Ocorrencia("BugCodigo1", "Erro ao executar codigo 1")
 
-        funcionario.inserir_ocorrencia(projeto1)
+        funcionario.inserir_ocorrencia(ocorrencia)
         with self.assertRaises(ErroEntidadeJaExistente):
-            funcionario.inserir_ocorrencia(projeto2)
+            funcionario.inserir_ocorrencia(ocorrencia)

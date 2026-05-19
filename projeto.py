@@ -15,4 +15,7 @@ class Projeto:
         self.funcionarios.append(funcionario)
 
     def inserir_ocorrencia(self, ocorrencia):
+        for o in self.ocorrencias:
+            if (o.nome == ocorrencia.nome):
+                raise ErroEntidadeJaExistente("Projeto ja existente.")
         self.ocorrencias.append(ocorrencia)
