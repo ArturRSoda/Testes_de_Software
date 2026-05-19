@@ -21,6 +21,7 @@
     - Verificar ocorrencia em funcionario
     - Verificar estado ocorrencia
     - trocar funcionario responsavel
+    - tipos e prioridade de ocorrencia
 
 - Testes de Caminhos infelizes
     - Criacao de entidades com nome vazio
