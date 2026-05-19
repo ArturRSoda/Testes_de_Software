@@ -1,3 +1,4 @@
 class Ocorrencia:
-    def __init__(self):
-        pass
+    def __init__(self, nome, resumo):
+        self.nome = nome
+        self.resumo = resumo
