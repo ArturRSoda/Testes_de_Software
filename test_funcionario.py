@@ -33,8 +33,6 @@ class ClassTesteFuncionario(unittest.TestCase):
             funcionario.inserir_ocorrencia(ocorrencia)
 
     def test_inserir_mais_de_10_ocorrencia_abertas(self):
-
-
         funcionario = Funcionario("Felipe")
         for i in range(10):
             ocorrencia = Ocorrencia(f"BugCodigo{i}", f"Erro ao executar codigo {i}")

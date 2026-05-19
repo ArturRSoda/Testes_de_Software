@@ -1,4 +1,4 @@
-from excecoes import ErroEntidadeJaExistente, ErroNomeVazio
+from excecoes import ErroEntidadeJaExistente, ErroNomeVazio, ErroMuitasOcorrencias
 
 class Funcionario:
     def __init__(self, nome):
@@ -19,6 +19,15 @@ class Funcionario:
         for o in self.ocorrencias:
             if (o.nome == ocorrencia.nome):
                 raise ErroEntidadeJaExistente("Ocorrencia ja existente.")
+
+        count_ocorrencias_abertas = 0
+        for o in self.ocorrencias:
+            if (o.estado == "aberto"): 
+                count_ocorrencias_abertas += 1
+
+        if (count_ocorrencias_abertas >= 10):
+            raise ErroMuitasOcorrencias("Funcionario ja responsavel por 10 ocorrencias")
+
         self.ocorrencias.append(ocorrencia)
 
     def fechar_ocorrencia(self, ocorrencia):
