@@ -168,3 +168,22 @@ class ClassTesteEmpresa(unittest.TestCase):
         self.assertTrue(f2)
         with self.assertRaises(ErroOcorrenciaFechada):
             empresa.mudar_responsavel(funcionario_novo, funcionario, ocorrencia)
+
+    def test_mudarPrioridadeDeOcorrenciaFechada(self):
+        empresa = Empresa("Elton-Lmtd")
+        funcionario = Funcionario("Felipe")
+        projeto = Projeto("SAVI")
+        ocorrencia = Ocorrencia("BugCodigo1", "Erro ao executar codigo 1")
+
+        empresa.inserir_funcionario(funcionario)
+        empresa.inserir_projeto(projeto)
+        empresa.inserir_funcionario_em_projeto(funcionario, projeto)
+
+        empresa.inserir_ocorrencia_em_projeto(ocorrencia, projeto, funcionario)
+
+        ocorrencia.definir_prioridade("alta")
+
+        funcionario.fechar_ocorrencia(ocorrencia)
+
+        with self.assertRaises(ErroOcorrenciaFechada):
+            ocorrencia.definir_prioridade("baixa")
