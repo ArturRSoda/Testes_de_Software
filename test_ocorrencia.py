@@ -15,3 +15,12 @@ class ClassTesteOcorrencia(unittest.TestCase):
         self.assertEqual(ocorrencia.tipo, "bug")
         with self.assertRaises(ValueError):
             ocorrencia.definir_tipo("tipo invalido")
+
+    def test_definir_prioridade_ocorrencia(self):
+        ocorrencia = Ocorrencia("BugCodigo1", "Erro ao executar codigo 1")
+
+        ocorrencia.definir_prioridade("baixa")
+
+        self.assertEqual(ocorrencia.prioridade, "baixa")
+        with self.assertRaises(ValueError):
+            ocorrencia.definir_prioridade("prioridade invalida")
